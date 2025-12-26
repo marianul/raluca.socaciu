@@ -76,10 +76,10 @@ async function loadContact() {
         // Program
         updateHTML('.contact-item:nth-child(4) p', `${config.Program}<br>${config.ProgramNota}`);
 
-        // Footer contact
-        updateText('.footer-contact p:nth-child(2)', config.Telefon);
-        updateText('.footer-contact p:nth-child(3)', config.Email);
-        updateText('.footer-contact p:nth-child(4)', config.Oras);
+        // Footer contact (folosim nth-of-type pentru a selecta doar elementele <p>)
+        updateHTML('.footer-contact p:nth-of-type(1)', `<i class="fas fa-phone"></i> ${config.Telefon}`);
+        updateHTML('.footer-contact p:nth-of-type(2)', `<i class="fas fa-envelope"></i> ${config.Email}`);
+        updateHTML('.footer-contact p:nth-of-type(3)', `<i class="fas fa-map-marker-alt"></i> ${config.Oras}`);
 
         // Social links
         updateSocialLink('.social-link[aria-label="Facebook"]', config.Facebook);
