@@ -141,7 +141,7 @@ async function loadTarife() {
 
 function parseTarife(text) {
     const tarife = [];
-    const sections = text.split('---');
+    const sections = normalizeLineEndings(text).split('---');
 
     for (const section of sections) {
         const titluMatch = section.match(/\[(.+?)\]/);
@@ -212,7 +212,7 @@ async function loadServicii() {
 
 function parseServicii(text) {
     const servicii = [];
-    const sections = text.split('---');
+    const sections = normalizeLineEndings(text).split('---');
 
     for (const section of sections) {
         const titluMatch = section.match(/\[(.+?)\]/);
@@ -280,6 +280,8 @@ function parseDespre(text) {
         atestat: '',
         specializari: ''
     };
+
+    text = normalizeLineEndings(text);
 
     // Extrage paragrafele de intro (înainte de primul ##)
     const introMatch = text.match(/^#[^#].*?\n\n([\s\S]*?)(?=\n##|$)/);
