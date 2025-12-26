@@ -10,11 +10,18 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // ================================
+// Normalizează line endings (Windows \r\n -> \n)
+// ================================
+function normalizeLineEndings(text) {
+    return text.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+}
+
+// ================================
 // Parser pentru fișiere .txt simple (cheie: valoare)
 // ================================
 function parseSimpleConfig(text) {
     const config = {};
-    const lines = text.split('\n');
+    const lines = normalizeLineEndings(text).split('\n');
 
     for (const line of lines) {
         // Ignoră comentarii și linii goale
