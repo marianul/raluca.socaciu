@@ -11,7 +11,7 @@ Oras: Târgu Mureș
 Judet: Mureș
 
 # Contact direct
-Telefon: +40 700 000 000
+Telefon: +40 700 000 001
 Email: contact@ralucasocaciu.ro
 
 # Program de lucru
