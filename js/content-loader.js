@@ -377,10 +377,11 @@ function updateSocialLink(selector, url) {
 // ================================
 async function loadBlog() {
     try {
-        const response = await fetch('blog/posts.json');
+        const response = await fetch('blog/articole.md');
         if (!response.ok) return;
 
-        const posts = await response.json();
+        const text = await response.text();
+        const posts = parseArticole(text);
         const container = document.querySelector('#blog .blog-grid');
         if (!container || posts.length === 0) return;
 
@@ -406,4 +407,52 @@ async function loadBlog() {
     } catch (error) {
         console.log('Nu s-au putut încărca articolele de blog:', error);
     }
+}
+
+// Parser pentru articole.md
+function parseArticole(text) {
+    const articole = [];
+    // Elimină comentariile și split după ===
+    const textCurat = normalizeLineEndings(text)
+        .split('\n')
+        .filter(line => !line.trim().startsWith('#'))
+        .join('\n');
+
+    const sections = textCurat.split('===');
+
+    for (const section of sections) {
+        // Caută metadata între --- și ---
+        const metaMatch = section.match(/---\s*\n([\s\S]*?)\n---\s*\n([\s\S]*)/);
+        if (!metaMatch) continue;
+
+        const metaText = metaMatch[1];
+        const content = metaMatch[2].trim();
+
+        // Parsează metadata
+        const meta = {};
+        metaText.split('\n').forEach(line => {
+            const colonIndex = line.indexOf(':');
+            if (colonIndex > -1) {
+                const key = line.substring(0, colonIndex).trim();
+                const value = line.substring(colonIndex + 1).trim();
+                meta[key] = value;
+            }
+        });
+
+        if (meta.slug && meta.title) {
+            articole.push({
+                slug: meta.slug,
+                title: meta.title,
+                date: meta.date,
+                dateFormatted: meta.dateFormatted,
+                category: meta.category,
+                author: meta.author,
+                readTime: meta.readTime,
+                description: meta.description,
+                content: content
+            });
+        }
+    }
+
+    return articole;
 }

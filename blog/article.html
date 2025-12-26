@@ -137,39 +137,81 @@
             document.getElementById('article-body').innerHTML = '<p>Nu a fost specificat niciun articol.</p>';
         }
 
+        // Normalizează line endings
+        function normalizeLineEndings(text) {
+            return text.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+        }
+
+        // Parsează toate articolele din articole.md
+        function parseArticole(text) {
+            const articole = [];
+            const textCurat = normalizeLineEndings(text)
+                .split('\n')
+                .filter(line => !line.trim().startsWith('#'))
+                .join('\n');
+
+            const sections = textCurat.split('===');
+
+            for (const section of sections) {
+                const metaMatch = section.match(/---\s*\n([\s\S]*?)\n---\s*\n([\s\S]*)/);
+                if (!metaMatch) continue;
+
+                const metaText = metaMatch[1];
+                const content = metaMatch[2].trim();
+
+                const meta = {};
+                metaText.split('\n').forEach(line => {
+                    const colonIndex = line.indexOf(':');
+                    if (colonIndex > -1) {
+                        const key = line.substring(0, colonIndex).trim();
+                        const value = line.substring(colonIndex + 1).trim();
+                        meta[key] = value;
+                    }
+                });
+
+                if (meta.slug && meta.title) {
+                    articole.push({
+                        slug: meta.slug,
+                        title: meta.title,
+                        date: meta.date,
+                        dateFormatted: meta.dateFormatted,
+                        category: meta.category,
+                        author: meta.author,
+                        readTime: meta.readTime,
+                        description: meta.description,
+                        content: content
+                    });
+                }
+            }
+
+            return articole;
+        }
+
         async function loadArticle(slug) {
             try {
-                // Încarcă fișierul Markdown
-                const response = await fetch(`posts/${slug}.md`);
-                if (!response.ok) throw new Error('Articol negăsit');
+                const response = await fetch('articole.md');
+                if (!response.ok) throw new Error('Nu s-a putut încărca fișierul de articole');
 
-                let markdown = await response.text();
+                const text = await response.text();
+                const articole = parseArticole(text);
+                const article = articole.find(a => a.slug === slug);
 
-                // Normalizează line endings (Windows \r\n -> \n)
-                markdown = markdown.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+                if (!article) throw new Error('Articol negăsit');
 
-                // Parsează frontmatter (metadata)
-                const frontmatterMatch = markdown.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+                // Actualizează pagina
+                document.title = `${article.title} | Raluca Socaciu`;
+                document.querySelector('meta[name="description"]').content = article.description || '';
+                document.getElementById('article-title').textContent = article.title;
+                document.getElementById('article-category').textContent = article.category;
+                document.getElementById('article-author').textContent = article.author;
+                document.getElementById('article-date').textContent = article.dateFormatted;
+                document.getElementById('article-readtime').textContent = article.readTime;
 
-                if (frontmatterMatch) {
-                    const frontmatter = parseFrontmatter(frontmatterMatch[1]);
-                    const content = frontmatterMatch[2];
-
-                    // Actualizează pagina
-                    document.title = `${frontmatter.title} | Raluca Socaciu`;
-                    document.querySelector('meta[name="description"]').content = frontmatter.description || '';
-                    document.getElementById('article-title').textContent = frontmatter.title;
-                    document.getElementById('article-category').textContent = frontmatter.category;
-                    document.getElementById('article-author').textContent = frontmatter.author;
-                    document.getElementById('article-date').textContent = formatDate(frontmatter.date);
-                    document.getElementById('article-readtime').textContent = frontmatter.readTime;
-
-                    // Parsează și afișează conținutul Markdown
-                    document.getElementById('article-body').innerHTML = marked.parse(content);
-                }
+                // Parsează și afișează conținutul Markdown
+                document.getElementById('article-body').innerHTML = marked.parse(article.content);
 
                 // Încarcă articole similare
-                loadRelatedArticles(slug);
+                loadRelatedArticles(slug, articole);
 
             } catch (error) {
                 document.getElementById('article-title').textContent = 'Articol negăsit';
@@ -178,51 +220,25 @@
             }
         }
 
-        function parseFrontmatter(frontmatter) {
-            const result = {};
-            frontmatter.split('\n').forEach(line => {
-                const [key, ...valueParts] = line.split(':');
-                if (key && valueParts.length) {
-                    result[key.trim()] = valueParts.join(':').trim();
-                }
-            });
-            return result;
-        }
+        function loadRelatedArticles(currentSlug, articole) {
+            // Filtrează articolul curent și ia primele 2
+            const related = articole.filter(p => p.slug !== currentSlug).slice(0, 2);
 
-        function formatDate(dateStr) {
-            const months = ['Ianuarie', 'Februarie', 'Martie', 'Aprilie', 'Mai', 'Iunie',
-                           'Iulie', 'August', 'Septembrie', 'Octombrie', 'Noiembrie', 'Decembrie'];
-            const date = new Date(dateStr);
-            return `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
-        }
-
-        async function loadRelatedArticles(currentSlug) {
-            try {
-                const response = await fetch('posts.json');
-                const posts = await response.json();
-
-                // Filtrează articolul curent și ia primele 2
-                const related = posts.filter(p => p.slug !== currentSlug).slice(0, 2);
-
-                const container = document.getElementById('related-articles');
-                container.innerHTML = related.map(post => `
-                    <article class="blog-card">
-                        <div class="blog-image">
-                            <div class="image-placeholder">
-                                <i class="fas fa-image"></i>
-                            </div>
+            const container = document.getElementById('related-articles');
+            container.innerHTML = related.map(post => `
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <div class="image-placeholder">
+                            <i class="fas fa-image"></i>
                         </div>
-                        <div class="blog-content">
-                            <span class="blog-category">${post.category}</span>
-                            <h3><a href="article.html?post=${post.slug}">${post.title}</a></h3>
-                            <p>${post.description}</p>
-                        </div>
-                    </article>
-                `).join('');
-
-            } catch (error) {
-                console.error('Nu s-au putut încărca articolele similare:', error);
-            }
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">${post.category}</span>
+                        <h3><a href="article.html?post=${post.slug}">${post.title}</a></h3>
+                        <p>${post.description}</p>
+                    </div>
+                </article>
+            `).join('');
         }
     </script>
 </body>
