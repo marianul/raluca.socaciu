@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <title>Articol | Raluca Socaciu</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/blog.css">
+    <!-- Marked.js pentru parsare Markdown -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <a href="../index.html" class="logo">
+                <span class="logo-text">Raluca Socaciu</span>
+                <span class="logo-subtitle">Psiholog Clinician</span>
+            </a>
+
+            <nav class="nav" id="nav">
+                <ul class="nav-list">
+                    <li><a href="../index.html#acasa" class="nav-link">Acasă</a></li>
+                    <li><a href="../index.html#despre" class="nav-link">Despre</a></li>
+                    <li><a href="../index.html#servicii" class="nav-link">Servicii</a></li>
+                    <li><a href="../index.html#preturi" class="nav-link">Prețuri</a></li>
+                    <li><a href="../index.html#blog" class="nav-link active">Blog</a></li>
+                    <li><a href="../index.html#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+
+            <button class="hamburger" id="hamburger" aria-label="Meniu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Article -->
+        <article class="blog-article">
+            <div class="article-header">
+                <div class="container">
+                    <a href="../index.html#blog" class="back-link"><i class="fas fa-arrow-left"></i> Înapoi la Blog</a>
+                    <span class="article-category" id="article-category">Se încarcă...</span>
+                    <h1 id="article-title">Se încarcă...</h1>
+                    <div class="article-meta">
+                        <span><i class="fas fa-user"></i> <span id="article-author">Raluca Socaciu</span></span>
+                        <span><i class="fas fa-calendar"></i> <span id="article-date"></span></span>
+                        <span><i class="fas fa-clock"></i> <span id="article-readtime"></span> citire</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Article Content -->
+            <div class="article-content">
+                <div class="container">
+                    <div id="article-body">
+                        <p>Se încarcă articolul...</p>
+                    </div>
+
+                    <div class="article-cta">
+                        <h3>Ai nevoie de suport?</h3>
+                        <p>Dacă te confrunți cu dificultăți și simți că ai nevoie de ajutor profesionist, te invit să programezi o consultație.</p>
+                        <a href="../index.html#contact" class="btn btn-primary">Programează o consultație</a>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Related Articles -->
+        <section class="related-articles">
+            <div class="container">
+                <h2>Alte articole</h2>
+                <div class="blog-grid" id="related-articles">
+                    <!-- Se populează din JavaScript -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Raluca Socaciu</h3>
+                    <p>Psiholog Clinician</p>
+                    <p class="footer-tagline">Îți ofer un spațiu sigur pentru explorare și dezvoltare personală.</p>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Navigare</h4>
+                    <ul>
+                        <li><a href="../index.html#acasa">Acasă</a></li>
+                        <li><a href="../index.html#despre">Despre</a></li>
+                        <li><a href="../index.html#servicii">Servicii</a></li>
+                        <li><a href="../index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-phone"></i> +40 700 000 000</p>
+                    <p><i class="fas fa-envelope"></i> contact@ralucasocaciu.ro</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Târgu Mureș</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Raluca Socaciu - Cabinet Psihologic. Toate drepturile rezervate.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="../js/main.js"></script>
+    <script>
+        // Obține slug-ul din URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const slug = urlParams.get('post');
+
+        if (slug) {
+            loadArticle(slug);
+        } else {
+            document.getElementById('article-title').textContent = 'Articol negăsit';
+            document.getElementById('article-body').innerHTML = '<p>Nu a fost specificat niciun articol.</p>';
+        }
+
+        async function loadArticle(slug) {
+            try {
+                // Încarcă fișierul Markdown
+                const response = await fetch(`posts/${slug}.md`);
+                if (!response.ok) throw new Error('Articol negăsit');
+
+                const markdown = await response.text();
+
+                // Parsează frontmatter (metadata)
+                const frontmatterMatch = markdown.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+
+                if (frontmatterMatch) {
+                    const frontmatter = parseFrontmatter(frontmatterMatch[1]);
+                    const content = frontmatterMatch[2];
+
+                    // Actualizează pagina
+                    document.title = `${frontmatter.title} | Raluca Socaciu`;
+                    document.querySelector('meta[name="description"]').content = frontmatter.description || '';
+                    document.getElementById('article-title').textContent = frontmatter.title;
+                    document.getElementById('article-category').textContent = frontmatter.category;
+                    document.getElementById('article-author').textContent = frontmatter.author;
+                    document.getElementById('article-date').textContent = formatDate(frontmatter.date);
+                    document.getElementById('article-readtime').textContent = frontmatter.readTime;
+
+                    // Parsează și afișează conținutul Markdown
+                    document.getElementById('article-body').innerHTML = marked.parse(content);
+                }
+
+                // Încarcă articole similare
+                loadRelatedArticles(slug);
+
+            } catch (error) {
+                document.getElementById('article-title').textContent = 'Articol negăsit';
+                document.getElementById('article-body').innerHTML = '<p>Ne pare rău, articolul solicitat nu a fost găsit.</p>';
+                console.error(error);
+            }
+        }
+
+        function parseFrontmatter(frontmatter) {
+            const result = {};
+            frontmatter.split('\n').forEach(line => {
+                const [key, ...valueParts] = line.split(':');
+                if (key && valueParts.length) {
+                    result[key.trim()] = valueParts.join(':').trim();
+                }
+            });
+            return result;
+        }
+
+        function formatDate(dateStr) {
+            const months = ['Ianuarie', 'Februarie', 'Martie', 'Aprilie', 'Mai', 'Iunie',
+                           'Iulie', 'August', 'Septembrie', 'Octombrie', 'Noiembrie', 'Decembrie'];
+            const date = new Date(dateStr);
+            return `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
+        }
+
+        async function loadRelatedArticles(currentSlug) {
+            try {
+                const response = await fetch('posts.json');
+                const posts = await response.json();
+
+                // Filtrează articolul curent și ia primele 2
+                const related = posts.filter(p => p.slug !== currentSlug).slice(0, 2);
+
+                const container = document.getElementById('related-articles');
+                container.innerHTML = related.map(post => `
+                    <article class="blog-card">
+                        <div class="blog-image">
+                            <div class="image-placeholder">
+                                <i class="fas fa-image"></i>
+                            </div>
+                        </div>
+                        <div class="blog-content">
+                            <span class="blog-category">${post.category}</span>
+                            <h3><a href="article.html?post=${post.slug}">${post.title}</a></h3>
+                            <p>${post.description}</p>
+                        </div>
+                    </article>
+                `).join('');
+
+            } catch (error) {
+                console.error('Nu s-au putut încărca articolele similare:', error);
+            }
+        }
+    </script>
+</body>
+</html>
