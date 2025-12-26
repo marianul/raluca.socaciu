@@ -61,20 +61,25 @@ async function loadContact() {
         updateText('.footer-brand > p', config.Titlu);
         updateText('.footer-tagline', config.Slogan);
 
-        // Contact info
-        const adresaCompleta = `${config.Strada}<br>${config.Oras}, ${config.Judet}`;
-        updateHTML('.contact-item:nth-child(1) p', adresaCompleta);
+        // Contact info (selectăm elementele din secțiunea Contact)
+        const contactItems = document.querySelectorAll('.contact-info .contact-item');
+        if (contactItems.length >= 4) {
+            // Adresă (primul contact-item)
+            const adresaP = contactItems[0].querySelector('p');
+            if (adresaP) adresaP.innerHTML = `${config.Strada}<br>${config.Oras}, ${config.Judet}`;
 
-        // Telefon cu link
-        const telLink = `<a href="tel:${config.Telefon.replace(/\s/g, '')}">${config.Telefon}</a>`;
-        updateHTML('.contact-item:nth-child(2) p', telLink);
+            // Telefon (al doilea contact-item)
+            const telP = contactItems[1].querySelector('p');
+            if (telP) telP.innerHTML = `<a href="tel:${config.Telefon.replace(/\s/g, '')}">${config.Telefon}</a>`;
 
-        // Email cu link
-        const emailLink = `<a href="mailto:${config.Email}">${config.Email}</a>`;
-        updateHTML('.contact-item:nth-child(3) p', emailLink);
+            // Email (al treilea contact-item)
+            const emailP = contactItems[2].querySelector('p');
+            if (emailP) emailP.innerHTML = `<a href="mailto:${config.Email}">${config.Email}</a>`;
 
-        // Program
-        updateHTML('.contact-item:nth-child(4) p', `${config.Program}<br>${config.ProgramNota}`);
+            // Program (al patrulea contact-item)
+            const programP = contactItems[3].querySelector('p');
+            if (programP) programP.innerHTML = `${config.Program}<br>${config.ProgramNota}`;
+        }
 
         // Footer contact (folosim nth-of-type pentru a selecta doar elementele <p>)
         updateHTML('.footer-contact p:nth-of-type(1)', `<i class="fas fa-phone"></i> ${config.Telefon}`);
