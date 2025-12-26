@@ -1,0 +1,24 @@
+# Date de Contact
+# Modifică valorile de mai jos (textul după ":")
+
+Nume: Raluca Socaciu
+Titlu: Psiholog Clinician
+Slogan: Îți ofer un spațiu sigur pentru explorare personală și dezvoltare emoțională
+
+# Adresa cabinetului
+Strada: Strada Exemplu, Nr. 10
+Oras: Târgu Mureș
+Judet: Mureș
+
+# Contact direct
+Telefon: +40 700 000 000
+Email: contact@ralucasocaciu.ro
+
+# Program de lucru
+Program: Luni - Vineri: 09:00 - 18:00
+ProgramNota: Cu programare prealabilă
+
+# Social Media (lasă gol dacă nu ai)
+Facebook: https://facebook.com/
+Instagram: https://instagram.com/
+LinkedIn: https://linkedin.com/

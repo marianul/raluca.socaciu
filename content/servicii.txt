@@ -1,0 +1,37 @@
+# Servicii Oferite
+# Format: Fiecare serviciu separat prin ---
+# Iconițe disponibile: user, users, comments, brain, cloud, video, heart, graduation-cap
+
+[Terapie Individuală]
+Icon: user
+Descriere: Ședințe personalizate pentru explorarea problemelor personale, gestionarea emoțiilor și dezvoltarea personală.
+
+---
+
+[Terapie de Cuplu]
+Icon: users
+Descriere: Sprijin pentru cupluri în depășirea conflictelor, îmbunătățirea comunicării și consolidarea relației.
+
+---
+
+[Consiliere Psihologică]
+Icon: comments
+Descriere: Suport pe termen scurt pentru situații specifice, luarea deciziilor și gestionarea stresului.
+
+---
+
+[Evaluare Psihologică]
+Icon: brain
+Descriere: Evaluări complete pentru diverse scopuri: carieră, dezvoltare personală, diagnostic clinic.
+
+---
+
+[Anxietate și Depresie]
+Icon: cloud
+Descriere: Tratament specializat pentru tulburări de anxietate, atacuri de panică și episoade depresive.
+
+---
+
+[Terapie Online]
+Icon: video
+Descriere: Ședințe de terapie prin videoconferință, pentru cei care preferă confortul propriei case.

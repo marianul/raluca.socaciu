@@ -8,7 +8,11 @@ Site de prezentare pentru cabinetul psihologic, hosted gratuit pe GitHub Pages.
 
 ## Cuprins
 
-1. [Cum să modifici textele din site](#cum-să-modifici-textele-din-site)
+1. [Modificare conținut - SIMPLU](#modificare-conținut---simplu)
+   - [Date de contact](#date-de-contact)
+   - [Tarife](#tarife)
+   - [Servicii](#servicii)
+   - [Secțiunea Despre](#secțiunea-despre)
 2. [Cum să adaugi un articol nou pe blog](#cum-să-adaugi-un-articol-nou-pe-blog)
 3. [Cum să modifici un articol existent](#cum-să-modifici-un-articol-existent)
 4. [Cum să ștergi un articol](#cum-să-ștergi-un-articol)
@@ -19,23 +23,139 @@ Site de prezentare pentru cabinetul psihologic, hosted gratuit pe GitHub Pages.
 
 ---
 
-## Cum să modifici textele din site
+## Modificare conținut - SIMPLU
 
-Textele principale (Despre, Servicii, Prețuri, Contact) sunt în fișierul `index.html`.
+Toate textele importante sunt în fișiere separate, ușor de editat, în folderul `content/`.
 
-### Pași:
-1. Deschide fișierul `index.html` pe GitHub sau local
-2. Caută textul pe care vrei să-l modifici (Ctrl+F)
-3. Modifică textul
-4. Salvează și încarcă modificările (vezi secțiunea "Cum să salvezi modificările")
+**Nu trebuie să știi HTML sau programare!** Doar modifici textul și salvezi.
 
-### Ce poți modifica ușor:
-- **Numele și titlul** - caută "Raluca Socaciu"
-- **Descrierea din secțiunea Despre** - caută "Bine ai venit!"
-- **Serviciile oferite** - caută "Terapie Individuală"
-- **Prețurile** - caută "150", "200", "250" (sumele în RON)
-- **Datele de contact** - caută "contact@ralucasocaciu.ro", "+40 700 000 000"
-- **Adresa** - caută "Strada Exemplu"
+---
+
+### Date de contact
+
+**Fișier:** `content/contact.txt`
+
+Deschide fișierul și modifică valorile după `:`. Exemplu:
+
+```
+Nume: Raluca Socaciu
+Titlu: Psiholog Clinician
+Slogan: Îți ofer un spațiu sigur pentru explorare personală
+
+Strada: Strada Principală, Nr. 15
+Oras: Târgu Mureș
+Judet: Mureș
+
+Telefon: +40 745 123 456
+Email: raluca@exemplu.ro
+
+Program: Luni - Vineri: 09:00 - 18:00
+ProgramNota: Cu programare prealabilă
+
+Facebook: https://facebook.com/pagina-ta
+Instagram: https://instagram.com/pagina-ta
+LinkedIn:
+```
+
+**Note:**
+- Liniile care încep cu `#` sunt comentarii (nu apar pe site)
+- Dacă nu ai un cont social media, lasă câmpul gol sau șterge linia
+
+---
+
+### Tarife
+
+**Fișier:** `content/tarife.txt`
+
+Format simplu pentru tarife:
+
+```
+[Numele Serviciului]
+Pret: 200
+Durata: 50 minute
+Beneficii:
+- Primul beneficiu
+- Al doilea beneficiu
+- Al treilea beneficiu
+
+---
+
+[Alt Serviciu]
+POPULAR
+Pret: 250
+Durata: 60 minute
+Beneficii:
+- Beneficiu 1
+- Beneficiu 2
+
+---
+
+Nota: * Textul care apare sub tarife
+```
+
+**Reguli:**
+- Fiecare serviciu începe cu `[Numele în paranteze pătrate]`
+- Separă serviciile prin `---` (trei liniuțe)
+- Adaugă `POPULAR` sub nume pentru a evidenția un serviciu
+- Beneficiile încep cu `-`
+
+---
+
+### Servicii
+
+**Fișier:** `content/servicii.txt`
+
+Format:
+
+```
+[Numele Serviciului]
+Icon: user
+Descriere: Textul care descrie serviciul.
+
+---
+
+[Alt Serviciu]
+Icon: brain
+Descriere: Descrierea acestui serviciu.
+```
+
+**Iconițe disponibile:**
+- `user` - persoană
+- `users` - grup de persoane
+- `comments` - conversație
+- `brain` - creier
+- `cloud` - nor
+- `video` - cameră video
+- `heart` - inimă
+- `graduation-cap` - tocă absolvent
+
+---
+
+### Secțiunea Despre
+
+**Fișier:** `content/despre.md`
+
+Scrie în format simplu Markdown:
+
+```markdown
+# Despre Mine
+
+Primul paragraf cu prezentarea ta generală.
+
+Al doilea paragraf cu mai multe detalii.
+
+## Studii
+
+Informații despre studiile tale.
+
+## Atestat
+
+Informații despre atestat și colegiu.
+
+## Specializări
+
+Lista specializărilor tale.
+```
 
 ---
 
@@ -299,7 +419,13 @@ raluca.socaciu/
 │   ├── style.css           # Stiluri principale
 │   └── blog.css            # Stiluri pentru articole
 ├── js/
-│   └── main.js             # Funcționalități (meniu, formular, etc.)
+│   ├── main.js             # Funcționalități (meniu, formular, etc.)
+│   └── content-loader.js   # Încarcă conținutul din folderul content/
+├── content/                # ⭐ CONȚINUT EDITABIL (fără HTML!)
+│   ├── contact.txt         # Date de contact
+│   ├── tarife.txt          # Prețuri și servicii
+│   ├── servicii.txt        # Lista serviciilor
+│   └── despre.md           # Secțiunea Despre Mine
 ├── images/                 # Folder pentru imagini
 ├── blog/
 │   ├── article.html        # Template pentru articole
