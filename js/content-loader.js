@@ -409,6 +409,17 @@ async function loadBlog() {
     }
 }
 
+// Generează slug din titlu (elimină diacritice, spații -> liniuțe, lowercase)
+function generateSlug(title) {
+    return title
+        .toLowerCase()
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, '') // elimină diacritice
+        .replace(/[^a-z0-9\s-]/g, '') // păstrează doar litere, cifre, spații, liniuțe
+        .replace(/\s+/g, '-') // spații -> liniuțe
+        .replace(/-+/g, '-') // multiple liniuțe -> una singură
+        .replace(/^-|-$/g, ''); // elimină liniuțe de la început/sfârșit
+}
+
 // Parser pentru articole.md
 function parseArticole(text) {
     const articole = [];
@@ -439,9 +450,9 @@ function parseArticole(text) {
             }
         });
 
-        if (meta.slug && meta.title) {
+        if (meta.title) {
             articole.push({
-                slug: meta.slug,
+                slug: generateSlug(meta.title),
                 title: meta.title,
                 date: meta.date,
                 dateFormatted: meta.dateFormatted,

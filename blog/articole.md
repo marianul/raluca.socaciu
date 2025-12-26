@@ -3,7 +3,6 @@
 # Metadata între --- și ---, conținut după
 
 ---
-slug: 2025-01-15-anxietate-viata-zi-cu-zi
 title: Cum să gestionezi anxietatea în viața de zi cu zi
 date: 2025-01-15
 dateFormatted: 15 Ianuarie 2025
@@ -70,7 +69,6 @@ Este important să consulți un specialist dacă:
 ===
 
 ---
-slug: 2025-01-10-comunicare-cuplu
 title: Comunicarea eficientă în cuplu
 date: 2025-01-10
 dateFormatted: 10 Ianuarie 2025
@@ -158,7 +156,6 @@ Uneori, cuplurile pot beneficia de ajutor profesionist pentru a îmbunătăți c
 ===
 
 ---
-slug: 2025-01-05-stima-de-sine
 title: De ce este importantă stima de sine
 date: 2025-01-05
 dateFormatted: 5 Ianuarie 2025
