@@ -143,7 +143,10 @@
                 const response = await fetch(`posts/${slug}.md`);
                 if (!response.ok) throw new Error('Articol negăsit');
 
-                const markdown = await response.text();
+                let markdown = await response.text();
+
+                // Normalizează line endings (Windows \r\n -> \n)
+                markdown = markdown.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
 
                 // Parsează frontmatter (metadata)
                 const frontmatterMatch = markdown.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
