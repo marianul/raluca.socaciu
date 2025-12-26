@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cabinet Psihologic Raluca Socaciu - Servicii de psihoterapie și consiliere psihologică în Târgu Mureș">
+    <meta name="keywords" content="psiholog, psihoterapie, consiliere, Târgu Mureș, Raluca Socaciu">
+    <title>Cabinet Psihologic | Raluca Socaciu | Târgu Mureș</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <a href="#acasa" class="logo">
+                <span class="logo-text">Raluca Socaciu</span>
+                <span class="logo-subtitle">Psiholog Clinician</span>
+            </a>
+
+            <nav class="nav" id="nav">
+                <ul class="nav-list">
+                    <li><a href="#acasa" class="nav-link active">Acasă</a></li>
+                    <li><a href="#despre" class="nav-link">Despre</a></li>
+                    <li><a href="#servicii" class="nav-link">Servicii</a></li>
+                    <li><a href="#preturi" class="nav-link">Prețuri</a></li>
+                    <li><a href="#blog" class="nav-link">Blog</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+
+            <button class="hamburger" id="hamburger" aria-label="Meniu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="acasa">
+            <div class="hero-content">
+                <h1 class="hero-title">Raluca Socaciu</h1>
+                <p class="hero-subtitle">Psiholog Clinician</p>
+                <p class="hero-text">Îți ofer un spațiu sigur pentru explorare personală și dezvoltare emoțională</p>
+                <a href="#contact" class="btn btn-primary">Programează o consultație</a>
+            </div>
+        </section>
+
+        <!-- Despre Section -->
+        <section class="section" id="despre">
+            <div class="container">
+                <h2 class="section-title">Despre Mine</h2>
+                <div class="about-content">
+                    <div class="about-image">
+                        <div class="image-placeholder">
+                            <i class="fas fa-user"></i>
+                            <p>Fotografie</p>
+                        </div>
+                    </div>
+                    <div class="about-text">
+                        <h3>Bine ai venit!</h3>
+                        <p>Sunt Raluca Socaciu, psiholog clinician cu experiență în consiliere și psihoterapie. Activez în Târgu Mureș și sunt dedicată să ofer suport profesional persoanelor care traversează momente dificile sau care doresc să se cunoască mai bine.</p>
+                        <p>Cred cu tărie că fiecare persoană are resursele necesare pentru a-și depăși dificultățile, iar rolul meu este să te ghidez în descoperirea acestor resurse.</p>
+
+                        <div class="about-details">
+                            <div class="detail-item">
+                                <i class="fas fa-graduation-cap"></i>
+                                <div>
+                                    <h4>Studii</h4>
+                                    <p>Licențiată în Psihologie, Universitatea...</p>
+                                </div>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-certificate"></i>
+                                <div>
+                                    <h4>Atestat</h4>
+                                    <p>Psiholog Clinician - Colegiul Psihologilor din România</p>
+                                </div>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-heart"></i>
+                                <div>
+                                    <h4>Specializări</h4>
+                                    <p>Terapie cognitiv-comportamentală, Anxietate, Depresie</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Servicii Section -->
+        <section class="section section-alt" id="servicii">
+            <div class="container">
+                <h2 class="section-title">Servicii</h2>
+                <p class="section-subtitle">Oferim o gamă variată de servicii pentru a răspunde nevoilor tale</p>
+
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h3>Terapie Individuală</h3>
+                        <p>Ședințe personalizate pentru explorarea problemelor personale, gestionarea emoțiilor și dezvoltarea personală.</p>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Terapie de Cuplu</h3>
+                        <p>Sprijin pentru cupluri în depășirea conflictelor, îmbunătățirea comunicării și consolidarea relației.</p>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h3>Consiliere Psihologică</h3>
+                        <p>Suport pe termen scurt pentru situații specifice, luarea deciziilor și gestionarea stresului.</p>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3>Evaluare Psihologică</h3>
+                        <p>Evaluări complete pentru diverse scopuri: carieră, dezvoltare personală, diagnostic clinic.</p>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <h3>Anxietate și Depresie</h3>
+                        <p>Tratament specializat pentru tulburări de anxietate, atacuri de panică și episoade depresive.</p>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <h3>Terapie Online</h3>
+                        <p>Ședințe de terapie prin videoconferință, pentru cei care preferă confortul propriei case.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Preturi Section -->
+        <section class="section" id="preturi">
+            <div class="container">
+                <h2 class="section-title">Prețuri</h2>
+                <p class="section-subtitle">Investiție în sănătatea ta mentală</p>
+
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <div class="pricing-header">
+                            <h3>Consultație Inițială</h3>
+                            <div class="price">
+                                <span class="amount">150</span>
+                                <span class="currency">RON</span>
+                            </div>
+                            <p class="duration">60 minute</p>
+                        </div>
+                        <ul class="pricing-features">
+                            <li><i class="fas fa-check"></i> Evaluare inițială</li>
+                            <li><i class="fas fa-check"></i> Stabilirea obiectivelor</li>
+                            <li><i class="fas fa-check"></i> Plan de tratament</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-outline">Programează</a>
+                    </div>
+
+                    <div class="pricing-card featured">
+                        <div class="pricing-badge">Popular</div>
+                        <div class="pricing-header">
+                            <h3>Ședință Individuală</h3>
+                            <div class="price">
+                                <span class="amount">200</span>
+                                <span class="currency">RON</span>
+                            </div>
+                            <p class="duration">50 minute</p>
+                        </div>
+                        <ul class="pricing-features">
+                            <li><i class="fas fa-check"></i> Terapie personalizată</li>
+                            <li><i class="fas fa-check"></i> Tehnici validate științific</li>
+                            <li><i class="fas fa-check"></i> Suport continuu</li>
+                            <li><i class="fas fa-check"></i> Materiale de lucru</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary">Programează</a>
+                    </div>
+
+                    <div class="pricing-card">
+                        <div class="pricing-header">
+                            <h3>Terapie de Cuplu</h3>
+                            <div class="price">
+                                <span class="amount">250</span>
+                                <span class="currency">RON</span>
+                            </div>
+                            <p class="duration">60 minute</p>
+                        </div>
+                        <ul class="pricing-features">
+                            <li><i class="fas fa-check"></i> Ședință pentru ambii parteneri</li>
+                            <li><i class="fas fa-check"></i> Îmbunătățirea comunicării</li>
+                            <li><i class="fas fa-check"></i> Rezolvarea conflictelor</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-outline">Programează</a>
+                    </div>
+                </div>
+
+                <p class="pricing-note">* Prețurile sunt orientative și pot varia în funcție de complexitatea cazului. Prima ședință include evaluarea inițială.</p>
+            </div>
+        </section>
+
+        <!-- Blog Section -->
+        <section class="section section-alt" id="blog">
+            <div class="container">
+                <h2 class="section-title">Blog</h2>
+                <p class="section-subtitle">Articole și resurse pentru sănătatea ta mentală</p>
+
+                <div class="blog-grid">
+                    <article class="blog-card">
+                        <div class="blog-image">
+                            <div class="image-placeholder">
+                                <i class="fas fa-image"></i>
+                            </div>
+                        </div>
+                        <div class="blog-content">
+                            <span class="blog-category">Anxietate</span>
+                            <h3><a href="#">Cum să gestionezi anxietatea în viața de zi cu zi</a></h3>
+                            <p>Descoperă tehnici simple și eficiente pentru a reduce anxietatea și a te simți mai calm...</p>
+                            <div class="blog-meta">
+                                <span><i class="fas fa-calendar"></i> 15 Ianuarie 2025</span>
+                                <span><i class="fas fa-clock"></i> 5 min citire</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="blog-card">
+                        <div class="blog-image">
+                            <div class="image-placeholder">
+                                <i class="fas fa-image"></i>
+                            </div>
+                        </div>
+                        <div class="blog-content">
+                            <span class="blog-category">Relații</span>
+                            <h3><a href="#">Comunicarea eficientă în cuplu</a></h3>
+                            <p>Învață să comunici mai bine cu partenerul tău pentru o relație mai armonioasă...</p>
+                            <div class="blog-meta">
+                                <span><i class="fas fa-calendar"></i> 10 Ianuarie 2025</span>
+                                <span><i class="fas fa-clock"></i> 7 min citire</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="blog-card">
+                        <div class="blog-image">
+                            <div class="image-placeholder">
+                                <i class="fas fa-image"></i>
+                            </div>
+                        </div>
+                        <div class="blog-content">
+                            <span class="blog-category">Dezvoltare personală</span>
+                            <h3><a href="#">De ce este importantă stima de sine</a></h3>
+                            <p>Explorează legătura dintre stima de sine și bunăstarea emoțională...</p>
+                            <div class="blog-meta">
+                                <span><i class="fas fa-calendar"></i> 5 Ianuarie 2025</span>
+                                <span><i class="fas fa-clock"></i> 6 min citire</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="section" id="contact">
+            <div class="container">
+                <h2 class="section-title">Contact</h2>
+                <p class="section-subtitle">Sunt aici pentru tine. Nu ezita să mă contactezi!</p>
+
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4>Adresă</h4>
+                                <p>Strada Exemplu, Nr. 10<br>Târgu Mureș, Mureș</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4>Telefon</h4>
+                                <p><a href="tel:+40700000000">+40 700 000 000</a></p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4>Email</h4>
+                                <p><a href="mailto:contact@ralucasocaciu.ro">contact@ralucasocaciu.ro</a></p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <h4>Program</h4>
+                                <p>Luni - Vineri: 09:00 - 18:00<br>Cu programare prealabilă</p>
+                            </div>
+                        </div>
+
+                        <div class="social-links">
+                            <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="contact-form-container">
+                        <form class="contact-form" id="contact-form">
+                            <div class="form-group">
+                                <label for="name">Nume complet *</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone">Telefon</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Mesaj *</label>
+                                <textarea id="message" name="message" rows="5" required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-block" id="submit-btn">
+                                <span class="btn-text">Trimite mesajul</span>
+                                <span class="btn-loading" style="display: none;">
+                                    <i class="fas fa-spinner fa-spin"></i> Se trimite...
+                                </span>
+                            </button>
+
+                            <div class="form-message" id="form-message"></div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Google Maps -->
+                <div class="map-container">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d43916.94772610889!2d24.526891!3d46.540699!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x474bb663bbea6087%3A0xc8e889235e2919f6!2sT%C3%A2rgu%20Mure%C8%99!5e0!3m2!1sro!2sro!4v1703500000000!5m2!1sro!2sro"
+                        width="100%"
+                        height="400"
+                        style="border:0;"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="Locație Cabinet Psihologic Târgu Mureș">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Raluca Socaciu</h3>
+                    <p>Psiholog Clinician</p>
+                    <p class="footer-tagline">Îți ofer un spațiu sigur pentru explorare și dezvoltare personală.</p>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Navigare</h4>
+                    <ul>
+                        <li><a href="#acasa">Acasă</a></li>
+                        <li><a href="#despre">Despre</a></li>
+                        <li><a href="#servicii">Servicii</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-phone"></i> +40 700 000 000</p>
+                    <p><i class="fas fa-envelope"></i> contact@ralucasocaciu.ro</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Târgu Mureș</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Raluca Socaciu - Cabinet Psihologic. Toate drepturile rezervate.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+</body>
+</html>
