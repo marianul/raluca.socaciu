@@ -6,17 +6,16 @@ Titlu: Psiholog Clinician
 Slogan: Îți ofer un spațiu sigur pentru explorare personală și dezvoltare emoțională
 
 # Adresa cabinetului
-Strada: Strada Exemplu, Nr. 10
+Strada: Strada Ion Creanga, Nr. 7
 Oras: Târgu Mureș
 Judet: Mureș
 
 # Contact direct
-Telefon: +40 700 000 001
-Email: contact@ralucasocaciu.ro
+Telefon: +40 740 181588
+Email: ralu.socaciu@gmail.com
 
 # Program de lucru
-Program: Luni - Vineri: 09:00 - 18:00
-ProgramNota: Cu programare prealabilă
+Cu programare telefonica sau email.
 
 # Social Media (lasă gol dacă nu ai)
 Facebook: https://facebook.com/
