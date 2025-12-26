@@ -2,12 +2,28 @@
 // Content Loader - Încarcă conținutul din fișierele de configurare
 // ================================
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function() {
     loadContact();
-    loadTarife();
+    await loadTarife();
     loadServicii();
     loadDespre();
+    setupPricingButtons();
 });
+
+// ================================
+// Setup pentru butoanele de programare din tarife
+// ================================
+function setupPricingButtons() {
+    document.querySelectorAll('a[data-serviciu]').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            const serviciu = this.dataset.serviciu;
+            const messageField = document.getElementById('message');
+            if (messageField) {
+                messageField.value = `Bună ziua,\n\nAș dori să programez o ședință "${serviciu}".\n\nVă mulțumesc!`;
+            }
+        });
+    });
+}
 
 // ================================
 // Normalizează line endings (Windows \r\n -> \n)
@@ -106,13 +122,20 @@ async function loadContact() {
 async function loadTarife() {
     try {
         const response = await fetch('content/tarife.txt');
-        if (!response.ok) return;
+        if (!response.ok) {
+            console.log('Tarife.txt nu s-a putut încărca:', response.status);
+            return;
+        }
 
         const text = await response.text();
         const tarife = parseTarife(text);
+        console.log('Tarife încărcate:', tarife);
 
         const container = document.querySelector('.pricing-grid');
-        if (!container || tarife.length === 0) return;
+        if (!container || tarife.length === 0) {
+            console.log('Container negăsit sau tarife goale');
+            return;
+        }
 
         container.innerHTML = tarife.map(tarif => `
             <div class="pricing-card${tarif.popular ? ' featured' : ''}">
@@ -128,9 +151,20 @@ async function loadTarife() {
                 <ul class="pricing-features">
                     ${tarif.beneficii.map(b => `<li><i class="fas fa-check"></i> ${b}</li>`).join('')}
                 </ul>
-                <a href="#contact" class="btn ${tarif.popular ? 'btn-primary' : 'btn-outline'}">Programează</a>
+                <a href="#contact" class="btn ${tarif.popular ? 'btn-primary' : 'btn-outline'}" data-serviciu="${tarif.titlu}">Programează</a>
             </div>
         `).join('');
+
+        // Adaugă event listeners pentru butoanele de programare
+        container.querySelectorAll('a[data-serviciu]').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                const serviciu = this.dataset.serviciu;
+                const messageField = document.getElementById('message');
+                if (messageField) {
+                    messageField.value = `Bună ziua,\n\nAș dori să programez o ședință "${serviciu}".\n\nVă mulțumesc!`;
+                }
+            });
+        });
 
         // Actualizează nota
         const notaMatch = text.match(/^Nota:\s*(.+)$/m);
@@ -146,7 +180,12 @@ async function loadTarife() {
 
 function parseTarife(text) {
     const tarife = [];
-    const sections = normalizeLineEndings(text).split('---');
+    // Elimină comentariile (linii care încep cu #)
+    const textFaraComentarii = normalizeLineEndings(text)
+        .split('\n')
+        .filter(line => !line.trim().startsWith('#'))
+        .join('\n');
+    const sections = textFaraComentarii.split('---');
 
     for (const section of sections) {
         const titluMatch = section.match(/\[(.+?)\]/);
