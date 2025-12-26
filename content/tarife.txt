@@ -2,8 +2,8 @@
 # Format: Fiecare serviciu este separat prin linie goală
 # Marchează cu [POPULAR] serviciul cel mai solicitat
 
-[Consultație Inițială]
-Pret: 150
+[Evaluare Psihologică Clinică]
+Pret: 200
 Durata: 60 minute
 Beneficii:
 - Evaluare inițială
@@ -13,9 +13,8 @@ Beneficii:
 ---
 
 [Ședință Individuală]
-POPULAR
 Pret: 200
-Durata: 50 minute
+Durata: 60 minute
 Beneficii:
 - Terapie personalizată
 - Tehnici validate științific
@@ -25,14 +24,21 @@ Beneficii:
 ---
 
 [Terapie de Cuplu]
-Pret: 250
-Durata: 60 minute
+Pret: 300
+Durata: 90 minute
 Beneficii:
 - Ședință pentru ambii parteneri
 - Îmbunătățirea comunicării
 - Rezolvarea conflictelor
 
 ---
+
+[Evaluare Psihologică Port-Armă]
+Pret: 200
+Durata: 120 - 180 minute
+
+---
+
 
 # Notă afișată sub tarife
 Nota: * Prețurile sunt orientative și pot varia în funcție de complexitatea cazului. Prima ședință include evaluarea inițială.
