@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     await loadTarife();
     loadServicii();
     loadDespre();
+    loadBlog();
     setupPricingButtons();
 });
 
@@ -368,5 +369,41 @@ function updateSocialLink(selector, url) {
         } else if (!url || url.trim() === '' || url.endsWith('.com/')) {
             el.style.display = 'none';
         }
+    }
+}
+
+// ================================
+// Încarcă articolele de blog
+// ================================
+async function loadBlog() {
+    try {
+        const response = await fetch('blog/posts.json');
+        if (!response.ok) return;
+
+        const posts = await response.json();
+        const container = document.querySelector('#blog .blog-grid');
+        if (!container || posts.length === 0) return;
+
+        container.innerHTML = posts.map(post => `
+            <article class="blog-card">
+                <div class="blog-image">
+                    <div class="image-placeholder">
+                        <i class="fas fa-image"></i>
+                    </div>
+                </div>
+                <div class="blog-content">
+                    <span class="blog-category">${post.category}</span>
+                    <h3><a href="blog/article.html?post=${post.slug}">${post.title}</a></h3>
+                    <p>${post.description}</p>
+                    <div class="blog-meta">
+                        <span><i class="fas fa-calendar"></i> ${post.dateFormatted}</span>
+                        <span><i class="fas fa-clock"></i> ${post.readTime} citire</span>
+                    </div>
+                </div>
+            </article>
+        `).join('');
+
+    } catch (error) {
+        console.log('Nu s-au putut încărca articolele de blog:', error);
     }
 }
