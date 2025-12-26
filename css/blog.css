@@ -62,6 +62,23 @@
     color: var(--primary);
 }
 
+/* Article Image */
+.article-image {
+    background: var(--bg-section);
+    padding: 30px 0;
+}
+
+.article-image .container {
+    max-width: 900px;
+}
+
+.article-image img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+}
+
 /* Article Content */
 .article-content {
     padding: 60px 0;

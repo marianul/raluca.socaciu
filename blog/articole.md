@@ -10,6 +10,7 @@ category: Anxietate
 author: Raluca Socaciu
 readTime: 5 min
 description: Descoperă tehnici simple și eficiente pentru a reduce anxietatea și a te simți mai calm în viața de zi cu zi.
+image: anxietate.jpg
 ---
 
 Anxietatea este o emoție normală pe care o experimentăm cu toții. Însă, atunci când devine copleșitoare, poate afecta semnificativ calitatea vieții noastre. În acest articol, vom explora tehnici practice și validate științific pentru a gestiona anxietatea în viața de zi cu zi.
@@ -76,6 +77,7 @@ category: Relații
 author: Raluca Socaciu
 readTime: 7 min
 description: Învață să comunici mai bine cu partenerul tău pentru o relație mai armonioasă și mai sănătoasă.
+image: comunicare-cuplu.jpg
 ---
 
 Comunicarea este fundamentul oricărei relații sănătoase. Modul în care vorbim și ascultăm în cuplu poate face diferența dintre o relație împlinită și una marcată de neînțelegeri și frustrări.
@@ -163,6 +165,7 @@ category: Dezvoltare personală
 author: Raluca Socaciu
 readTime: 6 min
 description: Explorează legătura dintre stima de sine și bunăstarea emoțională și descoperă cum să îți construiești o imagine de sine sănătoasă.
+image: stima-de-sine.jpg
 ---
 
 Stima de sine reprezintă evaluarea pe care o facem despre propria persoană - cât de mult ne apreciem, ne respectăm și ne considerăm demni de iubire și succes. Este fundația pe care construim întreaga noastră viață emoțională și relațională.

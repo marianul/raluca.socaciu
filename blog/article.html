@@ -62,6 +62,13 @@
                 </div>
             </div>
 
+            <!-- Article Image -->
+            <div class="article-image" id="article-image-container" style="display: none;">
+                <div class="container">
+                    <img id="article-image" src="" alt="" loading="lazy">
+                </div>
+            </div>
+
             <!-- Article Content -->
             <div class="article-content">
                 <div class="container">
@@ -190,6 +197,7 @@
                         author: meta.author,
                         readTime: meta.readTime,
                         description: meta.description,
+                        image: meta.image || null,
                         content: content
                     });
                 }
@@ -218,6 +226,15 @@
                 document.getElementById('article-date').textContent = article.dateFormatted;
                 document.getElementById('article-readtime').textContent = article.readTime;
 
+                // Afișează imaginea dacă există
+                if (article.image) {
+                    const imageContainer = document.getElementById('article-image-container');
+                    const imageEl = document.getElementById('article-image');
+                    imageEl.src = `../images/blog/${article.image}`;
+                    imageEl.alt = article.title;
+                    imageContainer.style.display = 'block';
+                }
+
                 // Parsează și afișează conținutul Markdown
                 document.getElementById('article-body').innerHTML = marked.parse(article.content);
 
@@ -239,9 +256,10 @@
             container.innerHTML = related.map(post => `
                 <article class="blog-card">
                     <div class="blog-image">
-                        <div class="image-placeholder">
-                            <i class="fas fa-image"></i>
-                        </div>
+                        ${post.image
+                            ? `<img src="../images/blog/${post.image}" alt="${post.title}" loading="lazy">`
+                            : `<div class="image-placeholder"><i class="fas fa-image"></i></div>`
+                        }
                     </div>
                     <div class="blog-content">
                         <span class="blog-category">${post.category}</span>

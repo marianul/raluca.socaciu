@@ -388,9 +388,10 @@ async function loadBlog() {
         container.innerHTML = posts.map(post => `
             <article class="blog-card">
                 <div class="blog-image">
-                    <div class="image-placeholder">
-                        <i class="fas fa-image"></i>
-                    </div>
+                    ${post.image
+                        ? `<img src="images/blog/${post.image}" alt="${post.title}" loading="lazy">`
+                        : `<div class="image-placeholder"><i class="fas fa-image"></i></div>`
+                    }
                 </div>
                 <div class="blog-content">
                     <span class="blog-category">${post.category}</span>
@@ -460,6 +461,7 @@ function parseArticole(text) {
                 author: meta.author,
                 readTime: meta.readTime,
                 description: meta.description,
+                image: meta.image || null,
                 content: content
             });
         }

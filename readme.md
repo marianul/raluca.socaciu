@@ -161,29 +161,26 @@ Lista specializărilor tale.
 
 ## Cum să adaugi un articol nou pe blog
 
-Articolele de blog sunt scrise în format **Markdown** (.md), un format simplu de text.
+Toate articolele sunt într-un singur fișier: `blog/articole.md`
 
-### Pas 1: Creează fișierul articolului
+### Pas 1: Deschide fișierul
 
-Creează un fișier nou în folderul `blog/posts/` cu numele în formatul:
-```
-AAAA-LL-ZZ-titlu-articol.md
-```
+Deschide `blog/articole.md` într-un editor de text.
 
-**Exemplu:** `2025-02-15-gestionarea-stresului.md`
+### Pas 2: Adaugă articolul
 
-### Pas 2: Scrie articolul
-
-Copiază acest șablon și completează-l:
+La **ÎNCEPUTUL** fișierului (după comentariile cu `#`), adaugă noul articol folosind acest șablon:
 
 ```markdown
 ---
 title: Titlul articolului tău
 date: 2025-02-15
+dateFormatted: 15 Februarie 2025
 category: Anxietate
 author: Raluca Socaciu
 readTime: 5 min
 description: O scurtă descriere care apare în preview (1-2 propoziții)
+image: nume-imagine.jpg
 ---
 
 Aici scrii primul paragraf al articolului. Acesta apare ca introducere.
@@ -205,36 +202,17 @@ Mai multe detalii aici.
 ## Concluzie
 
 Paragraf final cu concluzii.
-```
 
-### Pas 3: Actualizează lista de articole
-
-Deschide fișierul `blog/posts.json` și adaugă noul articol **LA ÎNCEPUT** (primele articole apar primele pe site):
-
-```json
-[
-  {
-    "slug": "2025-02-15-gestionarea-stresului",
-    "title": "Titlul articolului tău",
-    "date": "2025-02-15",
-    "dateFormatted": "15 Februarie 2025",
-    "category": "Anxietate",
-    "author": "Raluca Socaciu",
-    "readTime": "5 min",
-    "description": "O scurtă descriere care apare în preview..."
-  },
-  {
-    "slug": "2025-01-15-anxietate-viata-zi-cu-zi",
-    ... articolele existente ...
-  }
-]
+===
 ```
 
 **Important:**
-- `slug` = numele fișierului fără `.md`
-- Pune virgulă după `}` dacă mai sunt articole după
+- Fiecare articol este separat prin `===` (trei semne egal)
+- Metadata articolului e între `---` și `---`
+- Câmpul `image` este **opțional** - dacă nu ai imagine, nu pune linia
+- Slug-ul (adresa articolului) se generează automat din titlu
 
-### Pas 4: Salvează modificările
+### Pas 3: Salvează modificările
 
 Vezi secțiunea "Cum să salvezi modificările" de mai jos.
 
@@ -281,29 +259,40 @@ Vezi secțiunea "Cum să salvezi modificările" de mai jos.
 
 ## Cum să modifici un articol existent
 
-1. Deschide fișierul din `blog/posts/` (ex: `2025-01-15-anxietate-viata-zi-cu-zi.md`)
-2. Modifică textul
-3. Salvează modificările
+1. Deschide `blog/articole.md`
+2. Găsește articolul pe care vrei să-l modifici
+3. Modifică textul sau metadata
+4. Salvează modificările
 
-**Notă:** Dacă schimbi titlul sau descrierea, actualizează și `blog/posts.json`.
+**Notă:** Dacă schimbi titlul, se va schimba și adresa (URL-ul) articolului automat.
 
 ---
 
 ## Cum să ștergi un articol
 
-1. Șterge fișierul `.md` din `blog/posts/`
-2. Șterge intrarea corespunzătoare din `blog/posts.json`
+1. Deschide `blog/articole.md`
+2. Șterge întregul articol (de la `---` până la `===`)
 3. Salvează modificările
 
 ---
 
 ## Cum să adaugi imagini
 
-### Pentru articole de blog:
-1. Pune imaginea în folderul `images/`
-2. În articolul Markdown, adaugă:
+### Imagini pentru articole blog (thumbnail/preview):
+
+1. Pune imaginea în folderul `images/blog/`
+2. În metadata articolului din `blog/articole.md`, adaugă:
+```
+image: nume-imagine.jpg
+```
+
+**Dimensiuni recomandate:** 800x450px (raport 16:9)
+
+### Imagini în conținutul articolului:
+
+În textul articolului (Markdown), adaugă:
 ```markdown
-![Descriere imagine](../images/nume-imagine.jpg)
+![Descriere imagine](../images/blog/nume-imagine.jpg)
 ```
 
 ### Pentru pagina principală:
@@ -311,6 +300,8 @@ Vezi secțiunea "Cum să salvezi modificările" de mai jos.
 ```html
 <img src="images/fotografie.jpg" alt="Raluca Socaciu - Psiholog">
 ```
+
+**Notă:** Dacă nu adaugi imagine la un articol, va apărea un placeholder gri.
 
 ---
 
@@ -427,13 +418,10 @@ raluca.socaciu/
 │   ├── servicii.txt        # Lista serviciilor
 │   └── despre.md           # Secțiunea Despre Mine
 ├── images/                 # Folder pentru imagini
+│   └── blog/               # Imagini pentru articolele de blog
 ├── blog/
-│   ├── article.html        # Template pentru articole
-│   ├── posts.json          # Lista articolelor (ordinea contează!)
-│   └── posts/              # Articolele în format Markdown
-│       ├── 2025-01-15-anxietate-viata-zi-cu-zi.md
-│       ├── 2025-01-10-comunicare-cuplu.md
-│       └── 2025-01-05-stima-de-sine.md
+│   ├── article.html        # Template pentru afișare articol
+│   └── articole.md         # ⭐ TOATE articolele într-un singur fișier
 └── readme.md               # Acest fișier
 ```
 
@@ -450,9 +438,10 @@ raluca.socaciu/
 - Pe GitHub, poți vedea istoricul modificărilor și reveni la o versiune anterioară
 - În repository → "Commits" → alege un commit vechi → "Revert"
 
-### Cum aflu dacă am erori în posts.json?
-- Folosește https://jsonlint.com/ pentru a verifica dacă JSON-ul este valid
-- Cele mai comune erori: virgulă lipsă sau în plus, ghilimele lipsă
+### Am făcut o greșeală în articole.md și blog-ul nu funcționează
+- Verifică că fiecare articol are `---` la început și sfârșit pentru metadata
+- Verifică că articolele sunt separate prin `===`
+- Asigură-te că nu ai caractere speciale în câmpurile metadata
 
 ### Pot modifica culorile site-ului?
 Da, în `css/style.css` la începutul fișierului sunt definite culorile:
